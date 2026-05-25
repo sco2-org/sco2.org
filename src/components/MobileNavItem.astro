@@ -1,0 +1,30 @@
+---
+import type { NavItem } from "../data/navigation";
+
+export interface Props {
+  item: NavItem;
+}
+
+const { item } = Astro.props;
+---
+
+{
+  item.children ? (
+    <details class="group">
+      <summary class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 cursor-pointer hover:text-blue-700 list-none">
+        {item.label}
+      </summary>
+      <div class="ml-4 space-y-1 mt-1">
+        {item.children.map((child) => (
+          <a href={child.href} class="block px-3 py-2 rounded-md text-sm text-slate-600 hover:text-blue-700 hover:bg-slate-50">
+            {child.label}
+          </a>
+        ))}
+      </div>
+    </details>
+  ) : (
+    <a href={item.href} class="block px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-blue-700 hover:bg-slate-50">
+      {item.label}
+    </a>
+  )
+}

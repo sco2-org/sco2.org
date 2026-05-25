@@ -1,0 +1,337 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Countdown from "../../components/Countdown.astro";
+import { en } from "../../i18n/en";
+import { testimonials } from "../../data/testimonials";
+import { importantDates } from "../../data/dates";
+
+const t = en;
+const lang = "en" as const;
+
+const workshops = [
+  { title: t.ccc20.mccTitle, desc: t.ccc20.mccDesc, pdf: "/pdfs/II-MCC-call-for-papers.pdf", pdfLabel: t.ccc20.mccLink },
+  { title: t.ccc20.nalefTitle, desc: t.ccc20.nalefDesc, pdf: "/pdfs/20CCC-NALEF.pdf", pdfLabel: t.ccc20.nalefLink },
+  { title: t.ccc20.smdTitle, desc: t.ccc20.smdDesc, pdf: "/pdfs/SMD2026_20CCC.pdf", pdfLabel: t.ccc20.smdLink },
+  { title: t.ccc20.demoTitle, desc: t.ccc20.demoDesc, pdf: "/pdfs/DeSM_20CCC.pdf", pdfLabel: t.ccc20.demoLink },
+];
+
+const flyers = [
+  "/images/flyer-mpc.jpg",
+  "/images/flyer-smd.jpg",
+  "/images/flyer-mcc.jpg",
+  "/images/flyer-nalef.jpg",
+  "/images/flyer-dmsf.jpg",
+];
+
+const complementaryEvents = [
+  { title: t.ccc20.marathon, desc: t.ccc20.marathonDesc },
+  { title: t.ccc20.smdEvent, desc: t.ccc20.smdEventDesc },
+  { title: t.ccc20.softwareDemo, desc: t.ccc20.softwareDemoDesc },
+  { title: t.ccc20.workshop, desc: t.ccc20.workshopDesc },
+  { title: t.ccc20.networking, desc: t.ccc20.networkingDesc },
+];
+---
+
+<Layout
+  title="20th Colombian Computing Conference"
+  description="20CCC'26 — August 12–14, 2026, Cartagena de Indias. Celebrating scientific and technological advancements in computing."
+  lang={lang}
+  t={t}
+  canonicalURL="https://www.sco2.org/en/20ccc/"
+>
+  <section class="relative min-h-[60vh] flex items-center">
+    <div class="absolute inset-0">
+      <img src="/images/calendario-solar.jpg" alt="20CCC" class="w-full h-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/50"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6">
+          {t.ccc20.heroTitle}
+        </h1>
+        <p class="text-lg text-slate-200 mb-8">{t.ccc20.heroSubtitle}</p>
+        <p class="text-slate-300 italic font-medium">{t.ccc20.boardSignature}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-3">{t.ccc20.exploreTitle}</h2>
+        <p class="text-lg text-slate-600">{t.ccc20.exploreSubtitle}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <details class="group bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer hover:bg-slate-100 transition-colors list-none">
+            <span class="font-bold text-blue-700 text-lg">{t.ccc20.schedule}</span>
+            <svg class="h-5 w-5 text-blue-700 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="px-6 pb-4 text-slate-600">{t.ccc20.scheduleTbd}</div>
+        </details>
+
+        <details class="group bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer hover:bg-slate-100 transition-colors list-none">
+            <div>
+              <span class="font-bold text-blue-700 text-lg">{t.ccc20.speakers}</span>
+              <p class="text-sm text-slate-500">{t.ccc20.speakersSubtitle}</p>
+            </div>
+            <svg class="h-5 w-5 text-blue-700 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="px-6 pb-4 text-slate-600">{t.ccc20.speakersTbd}</div>
+        </details>
+
+        <details class="group bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer hover:bg-slate-100 transition-colors list-none">
+            <span class="font-bold text-blue-700 text-lg">{t.ccc20.about}</span>
+            <svg class="h-5 w-5 text-blue-700 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="px-6 pb-4 space-y-3">
+            <h3 class="font-semibold text-slate-800">{t.ccc20.aboutTitle}</h3>
+            <p class="text-slate-600 text-sm">{t.ccc20.aboutDesc}</p>
+            <p class="text-slate-600 text-sm">{t.ccc20.aboutMission}</p>
+          </div>
+        </details>
+
+        <details class="group bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer hover:bg-slate-100 transition-colors list-none">
+            <span class="font-bold text-blue-700 text-lg">{t.ccc20.cfp}</span>
+            <svg class="h-5 w-5 text-blue-700 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="px-6 pb-4 space-y-4">
+            <h3 class="font-semibold text-slate-800">{t.ccc20.cfpTitle}</h3>
+            <p class="text-slate-600 text-sm">{t.ccc20.cfpDesc}</p>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+              {t.ccc20.cfpAreas.map((area) => (
+                <li class="flex items-start gap-2 text-slate-700">
+                  <span class="text-blue-600 mt-0.5">&#8226;</span>
+                  {area}
+                </li>
+              ))}
+            </ul>
+            <p class="text-sm text-slate-500 italic">{t.ccc20.cfpBest}</p>
+            <a href="/pdfs/20CCC-CFP.pdf" class="inline-flex items-center gap-2 text-blue-700 hover:text-blue-800 font-medium text-sm">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+              {t.ccc20.cfpLink}
+            </a>
+            <a href="/pdfs/20CCC-CFP-EN.pdf" class="inline-flex items-center gap-2 text-blue-700 hover:text-blue-800 font-medium text-sm ml-4">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+              20CCC-CFP-EN
+            </a>
+
+            <div class="border-t border-slate-200 pt-4 mt-4">
+              <p class="font-semibold text-slate-700 text-sm">Available spots – 20CCC'26</p>
+            </div>
+            {workshops.map((w) => (
+              <div class="border-l-2 border-blue-200 pl-4">
+                <h4 class="font-semibold text-slate-800 text-sm">{w.title}</h4>
+                <p class="text-slate-600 text-xs mt-1">{w.desc}</p>
+                <a href={w.pdf} class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-medium text-xs mt-2">
+                  <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                  {w.pdfLabel}
+                </a>
+              </div>
+            ))}
+
+            <a href="https://cmt3.research.microsoft.com/20CCC2026" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors text-sm mt-4">
+              {t.ccc20.submitCta}
+            </a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-3">{t.ccc20.registration}</h2>
+        <p class="text-lg text-slate-600">{t.ccc20.registrationSubtitle}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 text-center">
+          <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="h-7 w-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">{t.ccc20.attendeeTitle}</h3>
+          <p class="text-slate-500 font-semibold">{t.ccc20.attendeeDesc}</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+          <div class="text-center mb-6">
+            <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">{t.ccc20.authorTitle}</h3>
+          </div>
+
+          <div class="space-y-6">
+            <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+              <p class="text-sm font-semibold text-blue-800 mb-3">{t.ccc20.earlyLabel}</p>
+              <div class="space-y-2">
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-slate-600">{t.ccc20.authorPrice}</span>
+                  <span class="text-sm font-bold text-slate-900">{t.ccc20.authorEarlyCop}</span>
+                  <span class="text-xs text-slate-400">{t.ccc20.authorEarlyUsd}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-slate-600">{t.ccc20.extraArticle}</span>
+                  <span class="text-sm font-bold text-slate-900">{t.ccc20.extraEarlyCop}</span>
+                  <span class="text-xs text-slate-400">{t.ccc20.extraEarlyUsd}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
+              <p class="text-sm font-semibold text-slate-700 mb-3">{t.ccc20.lateLabel}</p>
+              <div class="space-y-2">
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-slate-600">{t.ccc20.authorPrice}</span>
+                  <span class="text-sm font-bold text-slate-900">{t.ccc20.authorLateCop}</span>
+                  <span class="text-xs text-slate-400">{t.ccc20.authorLateUsd}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-slate-600">{t.ccc20.extraArticle}</span>
+                  <span class="text-sm font-bold text-slate-900">{t.ccc20.extraLateCop}</span>
+                  <span class="text-xs text-slate-400">{t.ccc20.extraLateUsd}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-3">{t.ccc20.committees}</h2>
+        <p class="text-lg text-slate-600">{t.ccc20.committeesTitle}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+          <h3 class="font-bold text-blue-700 mb-2">{t.ccc20.scientific}</h3>
+          <p class="text-sm text-slate-600">{t.ccc20.scientificDesc}</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+          <h3 class="font-bold text-blue-700 mb-2">{t.ccc20.organizing}</h3>
+          <p class="text-sm text-slate-600">{t.ccc20.organizingDesc}</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+          <h3 class="font-bold text-blue-700 mb-2">{t.ccc20.review}</h3>
+          <p class="text-sm text-slate-600">{t.ccc20.reviewDesc}</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+          <h3 class="font-bold text-blue-700 mb-2">{t.ccc20.web}</h3>
+          <p class="text-sm text-slate-600 mb-2">{t.ccc20.webDesc}</p>
+          <ul class="text-xs text-slate-500 space-y-1">
+            {t.ccc20.webMembers.map((m) => (
+              <li>{m}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-3">{t.ccc20.complementary}</h2>
+        <p class="text-lg text-slate-600">{t.ccc20.complementaryTitle}</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {complementaryEvents.map((event) => (
+          <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-blue-300 transition-colors">
+            <h3 class="font-bold text-slate-900 mb-3">{event.title}</h3>
+            <p class="text-sm text-slate-600">{event.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-slate-900 mb-3">{t.ccc20.venue}</h2>
+      <p class="text-xl text-blue-700 font-semibold">{t.ccc20.venueName}</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">{t.ccc20.testimonialsTitle}</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {testimonials.map((tm) => (
+          <div class="bg-slate-50 rounded-xl p-6 border border-slate-100">
+            <div class="flex items-center gap-4 mb-4">
+              <img src={tm.avatar} alt={tm.name} class="w-12 h-12 rounded-full object-cover" loading="lazy" />
+              <div>
+                <p class="font-semibold text-slate-900 text-sm">{tm.name}</p>
+                <p class="text-xs text-slate-500">{tm.role}</p>
+              </div>
+            </div>
+            <p class="text-sm text-slate-600 italic">"{tm.quoteEn}"</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">{t.ccc20.flyersTitle}</h2>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {flyers.map((src) => (
+           <a href={src} target="_blank" rel="noopener noreferrer" class="block rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-slate-200">
+            <img src={src} alt="Event flyer" class="w-full h-auto" loading="lazy" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-slate-900 text-center mb-3">{t.ccc20.dates}</h2>
+      <p class="text-lg text-slate-600 text-center mb-12">{t.ccc20.datesSubtitle}</p>
+
+      <div class="space-y-0">
+        {importantDates.map((d, i) => (
+          <div class="flex gap-6">
+            <div class="flex flex-col items-center">
+              <div class={`w-4 h-4 rounded-full border-2 ${i === 0 ? "bg-blue-600 border-blue-600" : "bg-white border-blue-300"} z-10`}></div>
+              {i < importantDates.length - 1 && <div class="w-0.5 flex-1 bg-blue-200"></div>}
+            </div>
+            <div class="pb-8">
+              <p class="font-bold text-blue-700">{d.dateEn}</p>
+              <p class="text-slate-700">{d.labelEn}</p>
+              {d.sublabelEn && <p class="font-bold text-blue-700 mt-1">{d.sublabelEn}</p>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-slate-900 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-6">{t.ccc20.countdownLabel}</h2>
+      <p class="text-lg text-slate-300 mb-10">{t.ccc20.countdownSubtitle}</p>
+      <Countdown />
+    </div>
+  </section>
+
+  <section class="py-8 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-xs text-slate-400">{t.ccc20.cmtCredit}</p>
+    </div>
+  </section>
+</Layout>

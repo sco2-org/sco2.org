@@ -1,0 +1,58 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SEO from "../components/SEO.astro";
+import type { Translations } from "../i18n/types";
+import "../styles/global.css";
+
+export interface Props {
+  title: string;
+  description: string;
+  lang?: "es" | "en";
+  t: Translations;
+  ogImage?: string;
+  canonicalURL?: string;
+  withHeader?: boolean;
+}
+
+const {
+  title,
+  description,
+  lang = "es",
+  t,
+  ogImage,
+  canonicalURL,
+  withHeader = true,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang === "es" ? "es-CO" : "en-US"}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://i.pravatar.cc data:; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; base-uri 'self';" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <SEO
+      title={title}
+      description={description}
+      lang={lang}
+      ogImage={ogImage}
+      canonicalURL={canonicalURL}
+    />
+    <title>{title} | Sociedad Colombiana de Computación</title>
+  </head>
+  <body>
+    {withHeader && <Header lang={lang} t={t} />}
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} t={t} />
+  </body>
+</html>

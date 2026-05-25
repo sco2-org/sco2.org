@@ -1,0 +1,65 @@
+---
+import type { NavItem } from "../data/navigation";
+
+export interface Props {
+  item: NavItem;
+  currentPath: string;
+}
+
+const { item, currentPath } = Astro.props;
+const isActive = currentPath === item.href || (item.href !== "#" && currentPath.startsWith(item.href));
+const dropdownId = `dd-${item.label.replace(/\s+/g, "-")}`;
+---
+
+{
+  item.children ? (
+    <div class="relative">
+      <button
+        id={`${dropdownId}-btn`}
+        class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive ? "text-blue-700 bg-blue-50" : "text-slate-600 hover:text-blue-700 hover:bg-slate-50"}`}
+      >
+        {item.label}
+        <svg class="inline ml-1 h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div
+        id={dropdownId}
+        class="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-slate-200 hidden z-50"
+      >
+        {item.children.map((child) => (
+          <a href={child.href} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-700 first:rounded-t-lg last:rounded-b-lg">
+            {child.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  ) : (
+    <a href={item.href} class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive ? "text-blue-700 bg-blue-50" : "text-slate-600 hover:text-blue-700 hover:bg-slate-50"}`}>
+      {item.label}
+    </a>
+  )
+}
+
+<script>
+  document.querySelectorAll("[id$='-btn']").forEach((btn) => {
+    const menu = document.getElementById(btn.id.replace("-btn", ""));
+    if (!menu) return;
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      document.querySelectorAll("[id$='-btn']").forEach((b) => {
+        const m = document.getElementById(b.id.replace("-btn", ""));
+        m?.classList.add("hidden");
+      });
+      if (!isOpen) {
+        menu.classList.remove("hidden");
+      }
+    });
+
+    document.addEventListener("click", () => {
+      menu.classList.add("hidden");
+    });
+  });
+</script>

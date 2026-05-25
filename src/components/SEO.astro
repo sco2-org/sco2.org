@@ -1,0 +1,38 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title,
+  description,
+  lang = "es",
+  ogImage = "/images/og-default.jpg",
+  canonicalURL,
+} = Astro.props;
+
+const siteURL = "https://www.sco2.org";
+const fullTitle = `${title} | Sociedad Colombiana de Computación`;
+---
+
+<meta name="description" content={description} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:image" content={`${siteURL}${ogImage}`} />
+<meta property="og:url" content={canonicalURL || siteURL} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<link rel="canonical" href={canonicalURL || siteURL} />
+{
+  canonicalURL && (
+    <link rel="alternate" hreflang={lang === "es" ? "en" : "es"} href={lang === "es"
+      ? canonicalURL.replace("/20ccc/", "/en/20ccc/")
+      : canonicalURL.replace("/en/", "/")} />
+  )
+}

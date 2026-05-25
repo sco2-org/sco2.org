@@ -1,0 +1,80 @@
+---
+import { getNavigation } from "../data/navigation";
+import type { Translations } from "../i18n/types";
+import NavItem from "./NavItem.astro";
+import MobileNavItem from "./MobileNavItem.astro";
+
+export interface Props {
+  lang: "es" | "en";
+  t: Translations;
+}
+
+const { lang, t } = Astro.props;
+const navItems = getNavigation(lang, t);
+const otherLang = lang === "es" ? "en" : "es";
+const otherLangPath = lang === "es" ? "/en" : "/";
+const currentPath = Astro.url.pathname;
+
+function getOtherLangUrl(): string {
+  if (lang === "en" && currentPath.startsWith("/en/20ccc")) {
+    return currentPath.replace("/en/", "/");
+  }
+  if (lang === "es" && currentPath.startsWith("/20ccc")) {
+    return currentPath.replace("/20ccc", "/en/20ccc");
+  }
+  return otherLangPath;
+}
+const otherLangUrl = getOtherLangUrl();
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#F9FAFB] border-b border-slate-200 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href={lang === "en" ? "/en" : "/"} class="flex items-center">
+        <img src="/images/logo.jpg" alt="SCo2 Logo" class="h-12 w-auto" />
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-1">
+        {navItems.map((item) => (
+          <NavItem item={item} currentPath={currentPath} />
+        ))}
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a
+          href={otherLangUrl}
+          class="text-xs font-medium px-3 py-1.5 rounded-full border border-slate-300 text-slate-600 hover:border-slate-400 hover:text-slate-800 transition-colors"
+        >
+          {otherLang === "es" ? "ES" : "EN"}
+        </a>
+        <button
+          id="mobile-menu-btn"
+          class="lg:hidden p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+          aria-label="Menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-slate-200 bg-white">
+    <div class="px-4 py-3 space-y-1">
+      {navItems.map((item) => (
+        <MobileNavItem item={item} />
+      ))}
+    </div>
+  </div>
+</header>
+
+<div class="h-16"></div>
+
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  btn?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+  });
+</script>

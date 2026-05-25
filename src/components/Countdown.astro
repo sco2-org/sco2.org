@@ -1,0 +1,65 @@
+---
+---
+
+<div id="countdown" class="flex justify-center gap-4 sm:gap-8">
+  <div class="text-center">
+    <span id="days" class="text-4xl sm:text-6xl font-bold text-blue-700 tabular-nums">00</span>
+    <p class="text-xs sm:text-sm text-slate-500 mt-1 uppercase tracking-wider">Días</p>
+  </div>
+  <span class="text-4xl sm:text-6xl font-light text-slate-300">:</span>
+  <div class="text-center">
+    <span id="hours" class="text-4xl sm:text-6xl font-bold text-blue-700 tabular-nums">00</span>
+    <p class="text-xs sm:text-sm text-slate-500 mt-1 uppercase tracking-wider">Horas</p>
+  </div>
+  <span class="text-4xl sm:text-6xl font-light text-slate-300">:</span>
+  <div class="text-center">
+    <span id="minutes" class="text-4xl sm:text-6xl font-bold text-blue-700 tabular-nums">00</span>
+    <p class="text-xs sm:text-sm text-slate-500 mt-1 uppercase tracking-wider">Minutos</p>
+  </div>
+  <span class="text-4xl sm:text-6xl font-light text-slate-300">:</span>
+  <div class="text-center">
+    <span id="seconds" class="text-4xl sm:text-6xl font-bold text-blue-700 tabular-nums">00</span>
+    <p class="text-xs sm:text-sm text-slate-500 mt-1 uppercase tracking-wider">Segundos</p>
+  </div>
+</div>
+
+<script>
+  function pad(n: number) {
+    return String(n).padStart(2, "0");
+  }
+  const target = new Date("2026-08-12T08:00:00-05:00").getTime();
+
+  function update() {
+    const now = Date.now();
+    const diff = target - now;
+
+    if (diff <= 0) {
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+      if (daysEl) daysEl.textContent = "00";
+      if (hoursEl) hoursEl.textContent = "00";
+      if (minutesEl) minutesEl.textContent = "00";
+      if (secondsEl) secondsEl.textContent = "00";
+      return;
+    }
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+    const daysEl = document.getElementById("days")!;
+    const hoursEl = document.getElementById("hours")!;
+    const minutesEl = document.getElementById("minutes")!;
+    const secondsEl = document.getElementById("seconds")!;
+    daysEl.textContent = pad(d);
+    hoursEl.textContent = pad(h);
+    minutesEl.textContent = pad(m);
+    secondsEl.textContent = pad(s);
+  }
+
+  update();
+  setInterval(update, 1000);
+</script>
