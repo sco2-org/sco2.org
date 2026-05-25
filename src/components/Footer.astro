@@ -1,6 +1,7 @@
 ---
 import { socialLinks } from "../data/social";
 import type { Translations } from "../i18n/types";
+import { BASE } from "../consts";
 
 export interface Props {
   lang: "es" | "en";
@@ -17,7 +18,7 @@ const otherLangPath = lang === "es" ? "/en" : "/";
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div>
         <div class="flex items-center gap-3 mb-4">
-          <img src="/images/logo.jpg" alt="SCo2 Logo" class="h-10 w-auto rounded" />
+          <img src={`${BASE}images/logo.jpg`} alt="SCo2 Logo" class="h-10 w-auto rounded" />
           <span class="text-white font-semibold text-sm">{t.footer.societyName}</span>
         </div>
         <p class="text-sm text-slate-400">
@@ -28,18 +29,18 @@ const otherLangPath = lang === "es" ? "/en" : "/";
       <div>
         <h3 class="text-white font-semibold mb-4">Links</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href={lang === "en" ? "/en" : "/"} class="hover:text-white transition-colors">{t.nav.society}</a></li>
-          <li><a href={lang === "en" ? "/en/20ccc/" : "/20ccc/"} class="hover:text-white transition-colors">{t.nav.ccc20}</a></li>
-          <li><a href={lang === "en" ? "/en/eventos/" : "/eventos/"} class="hover:text-white transition-colors">{t.nav.events}</a></li>
-          <li><a href={lang === "en" ? "/en/chapters/" : "/capitulos/"} class="hover:text-white transition-colors">{t.nav.chapters}</a></li>
-          <li><a href={lang === "en" ? "/en/#contact" : "/#contact"} class="hover:text-white transition-colors">{t.nav.contact}</a></li>
+          <li><a href={lang === "en" ? `${BASE}en` : BASE} class="hover:text-white transition-colors">{t.nav.society}</a></li>
+          <li><a href={`${BASE}${lang === "en" ? "en/20ccc/" : "20ccc/"}`} class="hover:text-white transition-colors">{t.nav.ccc20}</a></li>
+          <li><a href={`${BASE}${lang === "en" ? "en/eventos/" : "eventos/"}`} class="hover:text-white transition-colors">{t.nav.events}</a></li>
+          <li><a href={`${BASE}${lang === "en" ? "en/chapters/" : "capitulos/"}`} class="hover:text-white transition-colors">{t.nav.chapters}</a></li>
+          <li><a href={`${BASE}${lang === "en" ? "en/#contact" : "#contact"}`} class="hover:text-white transition-colors">{t.nav.contact}</a></li>
         </ul>
       </div>
 
       <div>
         <h3 class="text-white font-semibold mb-4">{t.lang.switchTo}</h3>
         <div class="flex gap-2 mb-4">
-          <a href={otherLangPath} class="text-sm px-3 py-1.5 rounded-full border border-slate-600 hover:border-slate-400 hover:text-white transition-colors">
+          <a href={`${BASE}${otherLangPath.replace(/^\//, "")}`} class="text-sm px-3 py-1.5 rounded-full border border-slate-600 hover:border-slate-400 hover:text-white transition-colors">
             {otherLang === "es" ? "🇨🇴 Español" : "🇺🇸 English"}
           </a>
         </div>

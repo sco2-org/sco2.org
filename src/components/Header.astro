@@ -1,6 +1,7 @@
 ---
 import { getNavigation } from "../data/navigation";
 import type { Translations } from "../i18n/types";
+import { BASE } from "../consts";
 import NavItem from "./NavItem.astro";
 import MobileNavItem from "./MobileNavItem.astro";
 
@@ -30,8 +31,8 @@ const otherLangUrl = getOtherLangUrl();
 <header class="fixed top-0 left-0 right-0 z-50 bg-[#F9FAFB] border-b border-slate-200 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <a href={lang === "en" ? "/en" : "/"} class="flex items-center">
-        <img src="/images/logo.jpg" alt="SCo2 Logo" class="h-12 w-auto" />
+      <a href={lang === "en" ? `${BASE}en` : BASE} class="flex items-center">
+        <img src={`${BASE}images/logo.jpg`} alt="SCo2 Logo" class="h-12 w-auto" />
       </a>
 
       <nav class="hidden lg:flex items-center gap-1">
@@ -42,7 +43,7 @@ const otherLangUrl = getOtherLangUrl();
 
       <div class="flex items-center gap-3">
         <a
-          href={otherLangUrl}
+          href={`${BASE}${otherLangUrl.replace(/^\//, "")}`}
           class="text-xs font-medium px-3 py-1.5 rounded-full border border-slate-300 text-slate-600 hover:border-slate-400 hover:text-slate-800 transition-colors"
         >
           {otherLang === "es" ? "ES" : "EN"}

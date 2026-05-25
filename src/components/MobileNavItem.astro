@@ -1,5 +1,6 @@
 ---
 import type { NavItem } from "../data/navigation";
+import { BASE } from "../consts";
 
 export interface Props {
   item: NavItem;
@@ -16,14 +17,14 @@ const { item } = Astro.props;
       </summary>
       <div class="ml-4 space-y-1 mt-1">
         {item.children.map((child) => (
-          <a href={child.href} class="block px-3 py-2 rounded-md text-sm text-slate-600 hover:text-blue-700 hover:bg-slate-50">
+          <a href={child.href === "#" ? "#" : `${BASE}${child.href.replace(/^\//, "")}`} class="block px-3 py-2 rounded-md text-sm text-slate-600 hover:text-blue-700 hover:bg-slate-50">
             {child.label}
           </a>
         ))}
       </div>
     </details>
   ) : (
-    <a href={item.href} class="block px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-blue-700 hover:bg-slate-50">
+    <a href={item.href === "#" ? "#" : `${BASE}${item.href.replace(/^\//, "")}`} class="block px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-blue-700 hover:bg-slate-50">
       {item.label}
     </a>
   )

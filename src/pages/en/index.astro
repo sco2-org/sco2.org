@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import ContactForm from "../../components/ContactForm.astro";
 import { en } from "../../i18n/en";
+import { BASE } from "../../consts";
 
 const t = en;
 const lang = "en" as const;
@@ -16,7 +17,7 @@ const lang = "en" as const;
   <section class="relative min-h-[85vh] flex items-center">
     <div class="absolute inset-0">
       <img
-        src="/images/hero.jpg"
+        src={`${BASE}images/hero.jpg`}
         alt="Computing in Colombia"
         class="w-full h-full object-cover"
         loading="eager"
@@ -32,7 +33,7 @@ const lang = "en" as const;
           {t.home.heroSubtitle}
         </p>
         <a
-          href="#about"
+          href={`${BASE}#about`}
           class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg transition-colors text-lg animate-fade-in-up animate-delay-200"
         >
           {t.home.heroCta}
@@ -50,9 +51,9 @@ const lang = "en" as const;
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <a href="/en/20ccc/" class="group block bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all overflow-hidden border border-slate-100">
+        <a href={`${BASE}en/20ccc/`} class="group block bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all overflow-hidden border border-slate-100">
           <div class="h-48 overflow-hidden">
-            <img src="/images/20ccc-card.jpg" alt="20CCC" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <img src={`${BASE}images/20ccc-card.jpg`} alt="20CCC" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors">{t.home.ccc20Title}</h3>
@@ -72,7 +73,7 @@ const lang = "en" as const;
 
         <div class="block bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden">
           <div class="h-48 overflow-hidden">
-            <img src="/images/assembly.jpg" alt="SCo2 Assembly" class="w-full h-full object-cover" />
+            <img src={`${BASE}images/assembly.jpg`} alt="SCo2 Assembly" class="w-full h-full object-cover" />
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-slate-900 mb-3">{t.home.assemblyTitle}</h3>
@@ -100,7 +101,7 @@ const lang = "en" as const;
           <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">{t.home.joinTitle}</h2>
           <p class="text-lg text-slate-600 mb-8">{t.home.joinDesc}</p>
           <a
-            href="/en/miembros/"
+            href={`${BASE}en/miembros/`}
             class="inline-block bg-blue-700 hover:bg-blue-800 text-white font-semibold px-8 py-4 rounded-lg transition-colors text-lg"
           >
             {t.home.joinCta}
@@ -108,7 +109,7 @@ const lang = "en" as const;
         </div>
         <div class="relative">
           <img
-            src="/images/join-community.jpg"
+            src={`${BASE}images/join-community.jpg`}
             alt="SCo2 Community"
             class="w-full rounded-2xl shadow-lg"
             loading="lazy"

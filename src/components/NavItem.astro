@@ -1,5 +1,6 @@
 ---
 import type { NavItem } from "../data/navigation";
+import { BASE } from "../consts";
 
 export interface Props {
   item: NavItem;
@@ -28,14 +29,14 @@ const dropdownId = `dd-${item.label.replace(/\s+/g, "-")}`;
         class="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-slate-200 hidden z-50"
       >
         {item.children.map((child) => (
-          <a href={child.href} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-700 first:rounded-t-lg last:rounded-b-lg">
+          <a href={child.href === "#" ? "#" : `${BASE}${child.href.replace(/^\//, "")}`} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-700 first:rounded-t-lg last:rounded-b-lg">
             {child.label}
           </a>
         ))}
       </div>
     </div>
   ) : (
-    <a href={item.href} class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive ? "text-blue-700 bg-blue-50" : "text-slate-600 hover:text-blue-700 hover:bg-slate-50"}`}>
+    <a href={item.href === "#" ? "#" : `${BASE}${item.href.replace(/^\//, "")}`} class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive ? "text-blue-700 bg-blue-50" : "text-slate-600 hover:text-blue-700 hover:bg-slate-50"}`}>
       {item.label}
     </a>
   )
