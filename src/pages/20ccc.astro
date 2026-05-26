@@ -242,16 +242,14 @@ const complementaryEvents = [
         <p class="text-lg text-slate-600">{t.ccc20.scientificDesc}</p>
       </div>
 
-      <div class="max-w-4xl mx-auto">
-        <div class="bg-gradient-to-r from-blue-700 to-blue-900 rounded-2xl p-8 mb-10 text-white">
-          <h3 class="text-xl font-bold mb-6 text-center">{t.ccc20.scientificPresidents}</h3>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-            {t.ccc20.scientificPresidentsList.map((p) => (
-              <div class="bg-white/10 rounded-xl p-4">
-                <p class="font-semibold text-lg">{p}</p>
-              </div>
-            ))}
-          </div>
+      <div class="max-w-4xl mx-auto mb-10">
+        <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider text-center mb-4">{t.ccc20.scientificPresidents}</h3>
+        <div class="flex flex-wrap justify-center gap-3">
+          {t.ccc20.scientificPresidentsList.map((p) => (
+            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-blue-50 text-blue-700 border border-blue-100">
+              {p}
+            </span>
+          ))}
         </div>
       </div>
 
