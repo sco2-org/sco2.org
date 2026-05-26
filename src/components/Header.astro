@@ -29,6 +29,7 @@ const otherLangUrl = getOtherLangUrl();
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-[#F9FAFB] border-b border-slate-200 shadow-sm">
+  <input type="checkbox" id="menu-toggle" class="peer hidden" />
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <a href={lang === "en" ? `${BASE}en` : BASE} class="flex items-center">
@@ -48,22 +49,20 @@ const otherLangUrl = getOtherLangUrl();
         >
           {otherLang === "es" ? "ES" : "EN"}
         </a>
-        <button
-          id="mobile-menu-btn"
-          class="lg:hidden p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+        <label
+          for="menu-toggle"
+          class="lg:hidden p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer"
           aria-label="Menu"
-          aria-expanded="false"
-          onclick="var m=document.getElementById('mobile-menu');if(m){m.classList.toggle('hidden');this.setAttribute('aria-expanded',!m.classList.contains('hidden'))}"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-        </button>
+        </label>
       </div>
     </div>
   </div>
 
-  <div id="mobile-menu" class="lg:hidden hidden border-t border-slate-200 bg-white">
+  <div class="lg:hidden hidden peer-checked:block border-t border-slate-200 bg-white">
     <div class="px-4 py-3 space-y-1">
       {navItems.map((item) => (
         <MobileNavItem item={item} />
