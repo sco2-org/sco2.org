@@ -5,7 +5,7 @@ export interface SocialLink {
 }
 
 export const socialLinks: SocialLink[] = [
-  { name: "Instagram", href: "https://www.instagram.com/", icon: "instagram" },
-  { name: "Facebook", href: "https://www.facebook.com/", icon: "facebook" },
-  { name: "X", href: "https://x.com/", icon: "x" },
+  { name: "Instagram", href: "https://www.instagram.com/sco2.computacion", icon: "instagram" },
+  { name: "Facebook", href: "https://www.facebook.com/SCo2SomosTodos/", icon: "facebook" },
+  { name: "X", href: "https://x.com/SCo2_", icon: "x" },
 ];
