@@ -4,6 +4,7 @@ export interface Translations {
     congress: string;
     events: string;
     chapters: string;
+    members: string;
     contact: string;
     ccc20: string;
     ccc19: string;

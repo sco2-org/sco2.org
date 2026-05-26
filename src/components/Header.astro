@@ -52,6 +52,7 @@ const otherLangUrl = getOtherLangUrl();
           id="mobile-menu-btn"
           class="lg:hidden p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100"
           aria-label="Menu"
+          aria-expanded="false"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -73,9 +74,13 @@ const otherLangUrl = getOtherLangUrl();
 <div class="h-16"></div>
 
 <script>
-  const btn = document.getElementById("mobile-menu-btn");
-  const menu = document.getElementById("mobile-menu");
-  btn?.addEventListener("click", () => {
-    menu?.classList.toggle("hidden");
-  });
+  (function() {
+    var btn = document.getElementById("mobile-menu-btn");
+    var menu = document.getElementById("mobile-menu");
+    if (!btn || !menu) return;
+    btn.addEventListener("click", function() {
+      var open = menu.classList.toggle("hidden");
+      btn.setAttribute("aria-expanded", String(!open));
+    });
+  })();
 </script>

@@ -29,6 +29,7 @@ export function getNavigation(lang: "es" | "en", t: any): NavItem[] {
     },
     { label: t.nav.events, href: lang === "en" ? "/en/events/" : "/eventos/" },
     { label: t.nav.chapters, href: lang === "en" ? "/en/chapters/" : "/capitulos/" },
+    { label: t.nav.members, href: lang === "en" ? "/en/members/" : "/miembros/" },
     { label: t.nav.contact, href: `${prefix}/#contact` },
   ];
 }
