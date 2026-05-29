@@ -1,4 +1,5 @@
 import { eventDetails } from "./event-details";
+import { chapters } from "./chapters";
 
 export interface NavItem {
   label: string;
@@ -20,6 +21,17 @@ export function getNavigation(lang: "es" | "en", t: any): NavItem[] {
     })),
   ];
 
+  const chaptersChildren: NavItem[] = [
+    {
+      label: lang === "en" ? "All chapters" : "Todos los capítulos",
+      href: lang === "en" ? "/en/chapters/" : "/capitulos/",
+    },
+    ...chapters.map((ch) => ({
+      label: lang === "en" ? ch.nameEn : ch.nameEs,
+      href: lang === "en" ? `/en/chapters/${ch.slug}/` : `/capitulos/${ch.slug}/`,
+    })),
+  ];
+
   return [
     { label: t.nav.society, href: `${prefix}/#about` },
     {
@@ -28,7 +40,11 @@ export function getNavigation(lang: "es" | "en", t: any): NavItem[] {
       children: congressChildren,
     },
     { label: t.nav.events, href: lang === "en" ? "/en/events/" : "/eventos/" },
-    { label: t.nav.chapters, href: lang === "en" ? "/en/chapters/" : "/capitulos/" },
+    {
+      label: t.nav.chapters,
+      href: "#",
+      children: chaptersChildren,
+    },
     { label: t.nav.members, href: lang === "en" ? "/en/members/" : "/miembros/" },
     { label: t.nav.contact, href: `${prefix}/#contact` },
   ];
