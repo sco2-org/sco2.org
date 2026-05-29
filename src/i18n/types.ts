@@ -34,6 +34,13 @@ export interface Translations {
     contactSuccess: string;
   };
   ccc20: Record<string, any>;
+  chapters: Record<string, any>;
+  chapterDetail: {
+    backToList: string;
+    objectives: string;
+    areas: string;
+    coordinator: string;
+  };
   footer: {
     copyright: string;
     societyName: string;

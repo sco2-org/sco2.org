@@ -30,22 +30,22 @@ const lang = "en" as const;
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
         {chapters.map((ch) => (
-          <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all">
-            <h3 class="font-bold text-slate-900 mb-3">{ch.nameEn}</h3>
+          <a href={`${BASE}en/chapters/${ch.slug}/`} class="group bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all block">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-bold text-slate-900 group-hover:text-blue-700 transition-colors">{ch.nameEn}</h3>
+              <svg class="h-4 w-4 text-slate-300 group-hover:text-blue-500 flex-shrink-0 mt-1 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </div>
             {ch.contactName && (
               <div class="text-sm text-slate-600 space-y-1">
                 <p class="font-medium text-blue-700 text-xs uppercase tracking-wide mb-2">{t.chapters.contact}</p>
                 <p class="font-medium">{ch.contactName}</p>
                 <p>{ch.contactInstitution}</p>
-                {ch.contactEmail && (
-                  <a href={`mailto:${ch.contactEmail}`} class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 text-xs font-medium mt-1">
-                    <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                    Send message
-                  </a>
-                )}
               </div>
             )}
-          </div>
+            <span class="inline-flex items-center gap-1 text-blue-600 text-xs font-medium mt-3 group-hover:underline">
+              {t.chapters.viewChapter}
+            </span>
+          </a>
         ))}
       </div>
 

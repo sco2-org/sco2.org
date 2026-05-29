@@ -427,8 +427,15 @@ export const en = {
       "Presentation of research advances at SCo2 academic events",
       "Benefits from agreements with AMEXCOM, RedUNCI, UIC, RENATA, and REDIS",
     ],
+    viewChapter: "View chapter",
     requirement: "To receive chapter endorsement, at least 8 members must hold a valid professional membership.",
   },
+  chapterDetail: {
+    backToList: "Back to chapters",
+    objectives: "Objectives",
+    areas: "Areas of interest",
+    coordinator: "Coordinator",
+  } as const,
   events: {
     title: "Events",
     subtitle: "Events of the Colombian Computer Society",

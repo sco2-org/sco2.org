@@ -427,8 +427,15 @@ export const es = {
       "Presentación de avances en eventos académicos SCo2",
       "Beneficios de convenios con AMEXCOM, RedUNCI, UIC, RENATA y REDIS",
     ],
+    viewChapter: "Ver capítulo",
     requirement: "Para recibir el aval como capítulo, al menos 8 miembros deben tener membresía profesional vigente.",
   },
+  chapterDetail: {
+    backToList: "Volver a capítulos",
+    objectives: "Objetivos",
+    areas: "Líneas de interés",
+    coordinator: "Coordinador",
+  } as const,
   events: {
     title: "Eventos",
     subtitle: "Eventos de la Sociedad Colombiana de Computación",

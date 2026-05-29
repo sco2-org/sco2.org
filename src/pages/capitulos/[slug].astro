@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { es } from "../../i18n/es";
+import { chapters } from "../../data/chapters";
+import { BASE } from "../../consts";
+
+export function getStaticPaths() {
+  return chapters.map((ch) => ({ params: { slug: ch.slug } }));
+}
+
+const { slug } = Astro.params;
+const ch = chapters.find((c) => c.slug === slug);
+
+if (!ch) {
+  return Astro.redirect("/404");
+}
+
+const t = es;
+const lang = "es" as const;
+---
+
+<Layout
+  title={ch.nameEs}
+  description={ch.descriptionEs}
+  lang={lang}
+  t={t}
+  canonicalURL={`https://www.sco2.org/capitulos/${ch.slug}/`}
+>
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href={`${BASE}capitulos/`} class="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-blue-700 mb-8 transition-colors">
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        {t.chapterDetail.backToList}
+      </a>
+
+      <div class="mb-10">
+        <h1 class="text-4xl font-extrabold text-slate-900 leading-tight mb-6">{ch.nameEs}</h1>
+        <div class="prose prose-slate max-w-none">
+          <p class="text-lg text-slate-700 leading-relaxed">{ch.descriptionEs}</p>
+        </div>
+      </div>
+
+      {
+        ch.objectivesEs.length > 0 && (
+          <div class="mb-10">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">{t.chapterDetail.objectives}</h2>
+            <ul class="space-y-3">
+              {ch.objectivesEs.map((obj) => (
+                <li class="flex items-start gap-3 text-slate-700">
+                  <svg class="h-5 w-5 text-blue-500 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                  <span>{obj}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+
+      {
+        ch.areasEs.length > 0 && (
+          <div class="mb-10">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">{t.chapterDetail.areas}</h2>
+            <div class="flex flex-wrap gap-2">
+              {ch.areasEs.map((area) => (
+                <span class="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-medium border border-blue-100">{area}</span>
+              ))}
+            </div>
+          </div>
+        )
+      }
+
+      <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 mb-10">
+        <h2 class="text-xl font-bold text-slate-900 mb-4">{t.chapterDetail.coordinator}</h2>
+        <div class="space-y-2">
+          <p class="text-slate-800 font-semibold">{ch.contactName}</p>
+          <p class="text-slate-600">{ch.contactInstitution}</p>
+          {ch.contactEmail && (
+            <a href={`mailto:${ch.contactEmail}`} class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+              {ch.contactEmail}
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
