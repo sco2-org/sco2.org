@@ -19,13 +19,31 @@ const smdEvents = eventDetails.filter((e) => e.category === "smd");
   t={t}
   canonicalURL="https://www.sco2.org/eventos/"
 >
+  <section class="relative min-h-[60vh] flex items-center">
+    <div class="absolute inset-0">
+      <img
+        src={`${BASE}images/eventos.jpg`}
+        alt="Eventos SCo2"
+        class="w-full h-full object-cover"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/85 to-slate-900/40"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div class="max-w-2xl">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6 animate-fade-in-up">
+          {t.events.title}
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-200 animate-fade-in-up animate-delay-100">
+          {t.events.subtitle}
+        </p>
+      </div>
+    </div>
+  </section>
+
   <section class="py-20 bg-white">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h1 class="text-4xl font-extrabold text-slate-900 mb-4">Eventos</h1>
-        <p class="text-xl text-slate-600">Historial de eventos de la Sociedad Colombiana de Computación</p>
-      </div>
-
       <section class="mb-20">
         <h2 class="text-2xl font-bold text-slate-900 mb-2">CCC — Congresos Colombianos de Computación</h2>
         <p class="text-slate-500 mb-8">Encuentro anual que reúne investigadores, estudiantes y profesionales de la computación en Colombia.</p>
