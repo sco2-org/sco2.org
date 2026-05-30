@@ -4,7 +4,6 @@ export const es = {
     congress: "Congresos",
     events: "Eventos",
     chapters: "Capítulos",
-    communities: "Comunidades",
     members: "Membresías",
     contact: "Contacto",
     ccc20: "20 CCC",
@@ -430,11 +429,6 @@ export const es = {
     ],
     viewChapter: "Ver capítulo",
     requirement: "Para recibir el aval como capítulo, al menos 8 miembros deben tener membresía profesional vigente.",
-  },
-  communities: {
-    heroTitle: "Comunidades que transforman la computación en Colombia",
-    heroSubtitle: "Conoce los capítulos académicos, grupos de investigación y comunidades que impulsan el desarrollo de las ciencias de la computación en el país.",
-    heroCta: "Explorar comunidades",
   },
   chapterDetail: {
     backToList: "Volver a capítulos",

@@ -4,7 +4,6 @@ export const en = {
     congress: "Conferences",
     events: "Events",
     chapters: "Chapters",
-    communities: "Communities",
     members: "Membership",
     contact: "Contact Us",
     ccc20: "20 CCC",
@@ -430,11 +429,6 @@ export const en = {
     ],
     viewChapter: "View chapter",
     requirement: "To receive chapter endorsement, at least 8 members must hold a valid professional membership.",
-  },
-  communities: {
-    heroTitle: "Communities transforming computing in Colombia",
-    heroSubtitle: "Explore the academic chapters, research groups, and communities driving the development of computer science in the country.",
-    heroCta: "Explore communities",
   },
   chapterDetail: {
     backToList: "Back to chapters",

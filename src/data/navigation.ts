@@ -45,7 +45,6 @@ export function getNavigation(lang: "es" | "en", t: any): NavItem[] {
       href: "#",
       children: chaptersChildren,
     },
-    { label: t.nav.communities, href: lang === "en" ? "/en/communities/" : "/comunidades/" },
     { label: t.nav.members, href: lang === "en" ? "/en/members/" : "/miembros/" },
     { label: t.nav.contact, href: `${prefix}/#contact` },
   ];
