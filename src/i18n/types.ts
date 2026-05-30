@@ -4,6 +4,7 @@ export interface Translations {
     congress: string;
     events: string;
     chapters: string;
+    communities: string;
     members: string;
     contact: string;
     ccc20: string;
@@ -35,6 +36,11 @@ export interface Translations {
   };
   ccc20: Record<string, any>;
   chapters: Record<string, any>;
+  communities: {
+    heroTitle: string;
+    heroSubtitle: string;
+    heroCta: string;
+  };
   chapterDetail: {
     backToList: string;
     objectives: string;
