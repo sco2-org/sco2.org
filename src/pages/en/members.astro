@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { en } from "../../i18n/en";
+import { BASE } from "../../consts";
 
 const t = en;
 const lang = "en" as const;
@@ -13,13 +14,31 @@ const lang = "en" as const;
   t={t}
   canonicalURL="https://www.sco2.org/en/members/"
 >
+  <section class="relative min-h-[60vh] flex items-center">
+    <div class="absolute inset-0">
+      <img
+        src={`${BASE}images/miembros.jpg`}
+        alt="SCo2 Membership"
+        class="w-full h-full object-cover"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/85 to-slate-900/40"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div class="max-w-2xl">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6 animate-fade-in-up">
+          {t.home.membersTitle}
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-200 animate-fade-in-up animate-delay-100">
+          {t.home.membersDesc}
+        </p>
+      </div>
+    </div>
+  </section>
+
   <section class="py-20 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h1 class="text-4xl font-extrabold text-slate-900 mb-4">{t.home.membersTitle}</h1>
-        <p class="text-xl text-slate-600 max-w-2xl mx-auto">{t.home.membersDesc}</p>
-      </div>
-
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
         <div class="bg-slate-50 rounded-xl p-8 text-center border border-slate-200">
           <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
